@@ -13,7 +13,8 @@ export default function Statistics() {
 
     useEffect(() => {
         const history = getHistory()
-        const items = Object.values(history!)
+        if (history === null) return
+        const items = Object.values(history)
             .flat()
             .map((history) => {
                 return history.items
@@ -94,7 +95,9 @@ export default function Statistics() {
 
     useEffect(() => {
         const history = getHistory()
-        let _monthlyCount: MonthlyCount[] = Object.entries(history!).map(
+        if (history === null) return
+
+        let _monthlyCount: MonthlyCount[] = Object.entries(history).map(
             ([key, value]) => {
                 const items = value
                     .map((history) =>
